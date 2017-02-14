@@ -1,0 +1,6 @@
+framework module Pods_TJCharts {
+  umbrella header "Pods-TJCharts-umbrella.h"
+
+  export *
+  module * { export * }
+}
