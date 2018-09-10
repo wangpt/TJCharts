@@ -8,7 +8,6 @@
 
 #import "LineChartViewController.h"
 #import "TJCharts-Bridging-Header.h"
-#import "PNColor.h"
 
 @interface LineChartViewController ()
 @property (nonatomic,strong)LineChartView *chartView;

@@ -8,7 +8,6 @@
 
 #import "RadarChartViewController.h"
 #import "TJCharts-Bridging-Header.h"
-#import "PNColor.h"
 
 @interface RadarChartViewController ()<IChartAxisValueFormatter>
 {

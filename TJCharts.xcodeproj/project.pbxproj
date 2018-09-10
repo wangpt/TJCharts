@@ -11,20 +11,12 @@
 		A8C63FA01E4AA8A4006FAB36 /* ChartBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63F9F1E4AA8A4006FAB36 /* ChartBaseViewController.m */; };
 		A8C63FA31E4AB179006FAB36 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FA21E4AB179006FAB36 /* PieChartViewController.m */; };
 		A8C63FA81E4B057E006FAB36 /* RadarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FA71E4B057E006FAB36 /* RadarChartViewController.m */; };
-		A8C63FAE1E4B13E4006FAB36 /* PNGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FAB1E4B13E4006FAB36 /* PNGenericChart.m */; };
-		A8C63FAF1E4B13E4006FAB36 /* PNLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FAD1E4B13E4006FAB36 /* PNLineChart.m */; };
-		A8C63FB31E4B1465006FAB36 /* PNColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FB21E4B1465006FAB36 /* PNColor.m */; };
-		A8C63FB61E4B146E006FAB36 /* PNChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FB51E4B146E006FAB36 /* PNChartLabel.m */; };
-		A8C63FB91E4B1483006FAB36 /* PNPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FB81E4B1483006FAB36 /* PNPieChartDataItem.m */; };
-		A8C63FBC1E4B149F006FAB36 /* PNLineChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FBB1E4B149F006FAB36 /* PNLineChartData.m */; };
-		A8C63FBF1E4B14B2006FAB36 /* PNLineChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FBE1E4B14B2006FAB36 /* PNLineChartDataItem.m */; };
 		A8EACC831E49BE0C006E787F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EACC821E49BE0C006E787F /* main.m */; };
 		A8EACC861E49BE0C006E787F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EACC851E49BE0C006E787F /* AppDelegate.m */; };
 		A8EACC8C1E49BE0C006E787F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8EACC8A1E49BE0C006E787F /* Main.storyboard */; };
 		A8EACC8E1E49BE0C006E787F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8EACC8D1E49BE0C006E787F /* Assets.xcassets */; };
 		A8EACC911E49BE0C006E787F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8EACC8F1E49BE0C006E787F /* LaunchScreen.storyboard */; };
 		A8EACCA01E49C24D006E787F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EACC9F1E49C24D006E787F /* MainViewController.m */; };
-		A8EACCA31E49C28B006E787F /* ChartsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8EACCA21E49C28B006E787F /* ChartsViewController.m */; };
 		A8F22CB51E5141F90071C05C /* LineChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F22CB41E5141F90071C05C /* LineChartViewController.m */; };
 		B47BE056CED08E27C01310FA /* Pods_TJCharts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65548994795799B681B26C68 /* Pods_TJCharts.framework */; };
 /* End PBXBuildFile section */
@@ -41,21 +33,6 @@
 		A8C63FA21E4AB179006FAB36 /* PieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartViewController.m; sourceTree = "<group>"; };
 		A8C63FA61E4B057E006FAB36 /* RadarChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarChartViewController.h; sourceTree = "<group>"; };
 		A8C63FA71E4B057E006FAB36 /* RadarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarChartViewController.m; sourceTree = "<group>"; };
-		A8C63FAA1E4B13E4006FAB36 /* PNGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNGenericChart.h; sourceTree = "<group>"; };
-		A8C63FAB1E4B13E4006FAB36 /* PNGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNGenericChart.m; sourceTree = "<group>"; };
-		A8C63FAC1E4B13E4006FAB36 /* PNLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChart.h; sourceTree = "<group>"; };
-		A8C63FAD1E4B13E4006FAB36 /* PNLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChart.m; sourceTree = "<group>"; };
-		A8C63FB01E4B1420006FAB36 /* PNChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartDelegate.h; sourceTree = "<group>"; };
-		A8C63FB11E4B1465006FAB36 /* PNColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNColor.h; sourceTree = "<group>"; };
-		A8C63FB21E4B1465006FAB36 /* PNColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNColor.m; sourceTree = "<group>"; };
-		A8C63FB41E4B146E006FAB36 /* PNChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNChartLabel.h; sourceTree = "<group>"; };
-		A8C63FB51E4B146E006FAB36 /* PNChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNChartLabel.m; sourceTree = "<group>"; };
-		A8C63FB71E4B1483006FAB36 /* PNPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNPieChartDataItem.h; sourceTree = "<group>"; };
-		A8C63FB81E4B1483006FAB36 /* PNPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNPieChartDataItem.m; sourceTree = "<group>"; };
-		A8C63FBA1E4B149F006FAB36 /* PNLineChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartData.h; sourceTree = "<group>"; };
-		A8C63FBB1E4B149F006FAB36 /* PNLineChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartData.m; sourceTree = "<group>"; };
-		A8C63FBD1E4B14B2006FAB36 /* PNLineChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PNLineChartDataItem.h; sourceTree = "<group>"; };
-		A8C63FBE1E4B14B2006FAB36 /* PNLineChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PNLineChartDataItem.m; sourceTree = "<group>"; };
 		A8EACC7E1E49BE0C006E787F /* TJCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TJCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8EACC821E49BE0C006E787F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A8EACC841E49BE0C006E787F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -67,8 +44,6 @@
 		A8EACC981E49BE27006E787F /* TJCharts-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TJCharts-Bridging-Header.h"; sourceTree = "<group>"; };
 		A8EACC9E1E49C24D006E787F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		A8EACC9F1E49C24D006E787F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		A8EACCA11E49C28B006E787F /* ChartsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChartsViewController.h; sourceTree = "<group>"; };
-		A8EACCA21E49C28B006E787F /* ChartsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartsViewController.m; sourceTree = "<group>"; };
 		A8F22CB31E5141F90071C05C /* LineChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChartViewController.h; sourceTree = "<group>"; };
 		A8F22CB41E5141F90071C05C /* LineChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LineChartViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +60,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BEADB932146A6E6000DEB91 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				A8EACC9E1E49C24D006E787F /* MainViewController.h */,
+				A8EACC9F1E49C24D006E787F /* MainViewController.m */,
+				A8C63F9E1E4AA8A4006FAB36 /* ChartBaseViewController.h */,
+				A8C63F9F1E4AA8A4006FAB36 /* ChartBaseViewController.m */,
+				A8C63FA11E4AB179006FAB36 /* PieChartViewController.h */,
+				A8C63FA21E4AB179006FAB36 /* PieChartViewController.m */,
+				A8C63FA61E4B057E006FAB36 /* RadarChartViewController.h */,
+				A8C63FA71E4B057E006FAB36 /* RadarChartViewController.m */,
+				A848F2641E4C743A0012309C /* BarChartViewController.h */,
+				A848F2651E4C743A0012309C /* BarChartViewController.m */,
+				A8F22CB31E5141F90071C05C /* LineChartViewController.h */,
+				A8F22CB41E5141F90071C05C /* LineChartViewController.m */,
+			);
+			name = Charts;
+			sourceTree = "<group>";
+		};
 		2D220D4BF5444A76C43B6F78 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -100,45 +94,6 @@
 				65548994795799B681B26C68 /* Pods_TJCharts.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A8C63FA41E4AB17E006FAB36 /* 统计图 */ = {
-			isa = PBXGroup;
-			children = (
-				A8C63F9E1E4AA8A4006FAB36 /* ChartBaseViewController.h */,
-				A8C63F9F1E4AA8A4006FAB36 /* ChartBaseViewController.m */,
-				A8C63FA11E4AB179006FAB36 /* PieChartViewController.h */,
-				A8C63FA21E4AB179006FAB36 /* PieChartViewController.m */,
-				A8C63FA61E4B057E006FAB36 /* RadarChartViewController.h */,
-				A8C63FA71E4B057E006FAB36 /* RadarChartViewController.m */,
-				A848F2641E4C743A0012309C /* BarChartViewController.h */,
-				A848F2651E4C743A0012309C /* BarChartViewController.m */,
-				A8F22CB31E5141F90071C05C /* LineChartViewController.h */,
-				A8F22CB41E5141F90071C05C /* LineChartViewController.m */,
-			);
-			name = "统计图";
-			sourceTree = "<group>";
-		};
-		A8C63FA91E4B13E4006FAB36 /* PNChart */ = {
-			isa = PBXGroup;
-			children = (
-				A8C63FBD1E4B14B2006FAB36 /* PNLineChartDataItem.h */,
-				A8C63FBE1E4B14B2006FAB36 /* PNLineChartDataItem.m */,
-				A8C63FB71E4B1483006FAB36 /* PNPieChartDataItem.h */,
-				A8C63FB81E4B1483006FAB36 /* PNPieChartDataItem.m */,
-				A8C63FB41E4B146E006FAB36 /* PNChartLabel.h */,
-				A8C63FB51E4B146E006FAB36 /* PNChartLabel.m */,
-				A8C63FB11E4B1465006FAB36 /* PNColor.h */,
-				A8C63FB21E4B1465006FAB36 /* PNColor.m */,
-				A8C63FB01E4B1420006FAB36 /* PNChartDelegate.h */,
-				A8C63FAA1E4B13E4006FAB36 /* PNGenericChart.h */,
-				A8C63FAB1E4B13E4006FAB36 /* PNGenericChart.m */,
-				A8C63FBA1E4B149F006FAB36 /* PNLineChartData.h */,
-				A8C63FBB1E4B149F006FAB36 /* PNLineChartData.m */,
-				A8C63FAC1E4B13E4006FAB36 /* PNLineChart.h */,
-				A8C63FAD1E4B13E4006FAB36 /* PNLineChart.m */,
-			);
-			path = PNChart;
 			sourceTree = "<group>";
 		};
 		A8EACC751E49BE0C006E787F = {
@@ -162,15 +117,10 @@
 		A8EACC801E49BE0C006E787F /* TJCharts */ = {
 			isa = PBXGroup;
 			children = (
-				A8C63FA91E4B13E4006FAB36 /* PNChart */,
+				2BEADB932146A6E6000DEB91 /* Charts */,
 				A8EACC841E49BE0C006E787F /* AppDelegate.h */,
 				A8EACC851E49BE0C006E787F /* AppDelegate.m */,
 				A8EACC8A1E49BE0C006E787F /* Main.storyboard */,
-				A8EACC9E1E49C24D006E787F /* MainViewController.h */,
-				A8EACC9F1E49C24D006E787F /* MainViewController.m */,
-				A8C63FA41E4AB17E006FAB36 /* 统计图 */,
-				A8EACCA11E49C28B006E787F /* ChartsViewController.h */,
-				A8EACCA21E49C28B006E787F /* ChartsViewController.m */,
 				A8EACC8D1E49BE0C006E787F /* Assets.xcassets */,
 				A8EACC8F1E49BE0C006E787F /* LaunchScreen.storyboard */,
 				A8EACC921E49BE0C006E787F /* Info.plist */,
@@ -200,7 +150,6 @@
 				A8EACC7B1E49BE0C006E787F /* Frameworks */,
 				A8EACC7C1E49BE0C006E787F /* Resources */,
 				E1C617B1B863384EA2B72BB4 /* [CP] Embed Pods Frameworks */,
-				4A5BDE1C21EBCC1EEF34598A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,34 +209,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4A5BDE1C21EBCC1EEF34598A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TJCharts/Pods-TJCharts-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		55ECAE95C38B7B7E5DEE07D2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TJCharts-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E1C617B1B863384EA2B72BB4 /* [CP] Embed Pods Frameworks */ = {
@@ -296,9 +233,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TJCharts/Pods-TJCharts-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -312,22 +254,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8C63FAE1E4B13E4006FAB36 /* PNGenericChart.m in Sources */,
 				A8EACC861E49BE0C006E787F /* AppDelegate.m in Sources */,
-				A8EACCA31E49C28B006E787F /* ChartsViewController.m in Sources */,
-				A8C63FBF1E4B14B2006FAB36 /* PNLineChartDataItem.m in Sources */,
 				A8EACCA01E49C24D006E787F /* MainViewController.m in Sources */,
 				A8C63FA01E4AA8A4006FAB36 /* ChartBaseViewController.m in Sources */,
 				A8C63FA31E4AB179006FAB36 /* PieChartViewController.m in Sources */,
-				A8C63FB91E4B1483006FAB36 /* PNPieChartDataItem.m in Sources */,
 				A848F2661E4C743A0012309C /* BarChartViewController.m in Sources */,
 				A8EACC831E49BE0C006E787F /* main.m in Sources */,
 				A8C63FA81E4B057E006FAB36 /* RadarChartViewController.m in Sources */,
 				A8F22CB51E5141F90071C05C /* LineChartViewController.m in Sources */,
-				A8C63FAF1E4B13E4006FAB36 /* PNLineChart.m in Sources */,
-				A8C63FB31E4B1465006FAB36 /* PNColor.m in Sources */,
-				A8C63FBC1E4B149F006FAB36 /* PNLineChartData.m in Sources */,
-				A8C63FB61E4B146E006FAB36 /* PNChartLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
