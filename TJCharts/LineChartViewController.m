@@ -21,14 +21,17 @@
     // Do any additional setup after loading the view.
     
     //初始化对象
-    self.chartView = [[LineChartView alloc] init];
-    [self.view addSubview:self.chartView];
     CGFloat chartW =[self getScreenSize].width - 20;
     CGFloat chartH =[self getScreenSize].height - 300;
-    [self.chartView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(chartW, chartH));
-        make.center.mas_equalTo(self.view);
-    }];
+    self.chartView = ({
+        LineChartView *chartView = [[LineChartView alloc] init];
+        [self.view addSubview:chartView];
+        [chartView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(chartW, chartH));
+            make.center.mas_equalTo(self.view);
+        }];
+        chartView;
+    });
     
     [super setupBarLineChartView:self.chartView];
     
