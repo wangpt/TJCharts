@@ -77,55 +77,7 @@
 
 }
 
-- (void)setupPieChartView:(PieChartView *)chartView
-{
-    //基础属性
-    chartView.usePercentValuesEnabled = YES;//是否根据所提供的数据, 将显示数据转换为百分比格式
-    chartView.dragDecelerationEnabled = YES;//拖拽饼状图后是否有惯性效果
-    chartView.drawSliceTextEnabled = YES;//是否显示区块文本
-    
-    chartView.drawSlicesUnderHoleEnabled = NO;
-    chartView.holeRadiusPercent = 0.58;//空心半径占比
-    chartView.transparentCircleRadiusPercent = 0.61;//半透明空心半径占比
-    chartView.chartDescription.enabled = NO;
-    [chartView setExtraOffsetsWithLeft:5.f top:10.f right:5.f bottom:5.f];//饼状图距离边缘的间隙
-    
-    //设置饼状图中间的空心样式
-    
-    chartView.drawHoleEnabled = NO;//是否空心
-    chartView.rotationAngle = 0.0;
-    chartView.rotationEnabled = YES;
-    chartView.highlightPerTapEnabled = YES;
-    
-    if (chartView.isDrawHoleEnabled == YES) {
-        chartView.drawCenterTextEnabled = YES;//是否显示中间文字
-        //普通文本
-        //  self.pieChartView.centerText = @"饼状图";//中间文字
-        //富文本
-        NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"个人旅游\n城市分布"];
-        [centerText setAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16],
-                                    NSForegroundColorAttributeName: [UIColor orangeColor]}
-                            range:NSMakeRange(0, centerText.length)];
-        chartView.centerAttributedText = centerText;
-    }
-    //饼状图描述
-    
-    ChartLegend *l = chartView.legend;
-    chartView.legend.enabled = NO;//隐藏描述
-    l.drawInside = NO;
-    l.xEntrySpace = 7.0;
-    l.yEntrySpace = 0.0;
-    l.yOffset = 0.0;
-    
-    l.maxSizePercent = 1;//图例在饼状图中的大小占比, 这会影响图例的宽高
-    l.formToTextSpace = 5;//文本间隔
-    l.font = [UIFont systemFontOfSize:10];//字体大小
-    l.textColor = [UIColor grayColor];//字体颜色
-    l.position = ChartLegendPositionBelowChartCenter;//图例在饼状图中的位置
-    l.form = ChartLegendFormCircle;//图示样式: 方形、线条、圆形
-    l.formSize = 12;//图示大小
-    
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
