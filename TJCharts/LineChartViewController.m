@@ -50,6 +50,11 @@
         xAxis.labelPosition = XAxisLabelPositionBottom;//X轴的显示位置，默认是显示在上面的
         xAxis.labelTextColor = [UIColor blueColor];//label文字颜色
         xAxis.axisLineColor = [UIColor blueColor];//x轴线的颜色
+        xAxis.valueFormatter = self;//用于设置x轴文字显示
+        xAxis.spaceMin = 0.5;//设置坐标轴额外的最小空间
+        xAxis.spaceMax = 0.5;//设置坐标轴额外的最大空间
+        //4.设置y轴的样式
+        ChartYAxis *leftAxis = lineChart.leftAxis;//获取左边Y轴
         leftAxis.drawGridLinesEnabled = NO;//不绘制网格线
         leftAxis.axisLineWidth = 1.0/[UIScreen mainScreen].scale;//Y轴线宽
         leftAxis.labelCount = 5;//Y轴label数量，数值不一定，如果forceLabelsEnabled等于YES, 则强制绘制制定数量的label, 但是可能不平均
@@ -126,6 +131,14 @@
             set.circleRadius = 3.0;//拐点半径
             set.drawCirclesEnabled = NO;//是否绘制拐点
             set.drawCubicEnabled = YES;
+            //填充色
+//            NSArray *gradientColors = @[(id)[ChartColorTemplates colorFromString:@"#FFFFFFFF"].CGColor,
+//                                        (id)[ChartColorTemplates colorFromString:@"#FF007FFF"].CGColor];
+//            CGGradientRef gradient = CGGradientCreateWithColors(nil, (CFArrayRef)gradientColors, nil);
+//            set.fillAlpha = 0.3f;//透明度
+//            set.fill = [ChartFill fillWithLinearGradient:gradient angle:90.f];//赋值填充颜色对象
+//            set.drawFilledEnabled = YES;//是否填充颜色
+//            CGGradientRelease(gradient);
             [dataSets addObject:set];
         }];
         LineChartData *data = [[LineChartData alloc] initWithDataSets:dataSets];
@@ -135,62 +148,9 @@
     }
     
     [_chartView animateWithXAxisDuration:0.5];
-
-    
 }
 
-- (void)setFillDataCount:(int)count range:(double)range
-{
-    int xVals_count = 12;//X轴上要显示多少条数据
-    NSMutableArray *values = [[NSMutableArray alloc] init];
-    
-    for (int i = 0; i < xVals_count; i++)
-    {
-        double val = arc4random_uniform(range) + 3;
-        [values addObject:[[ChartDataEntry alloc] initWithX:i y:val]];
-    }
-    
-    LineChartDataSet *set1 = nil;
-    if (_chartView.data.dataSetCount > 0)
-    {
-        set1 = (LineChartDataSet *)_chartView.data.dataSets[0];
-        set1.values = values;
-        [_chartView.data notifyDataChanged];
-        [_chartView notifyDataSetChanged];
-    }
-    else
-    {
-        set1 = [[LineChartDataSet alloc] initWithValues:values label:@"lineName"];
-        //点击选中拐点的交互样式
-        set1.highlightLineDashLengths = @[@5.f, @2.5f];//十字线的虚线样式
-        [set1 setColor:[self colorWithHexString:@"#007FFF"]];//折线颜色
-        set1.lineWidth = 1.0;//折线宽度
-        set1.drawValuesEnabled = NO;//是否在拐点处显示数据
-        //折线拐点样式
-        set1.drawCirclesEnabled = NO;//是否绘制拐点
-        set1.circleRadius = 3.0;
-        set1.valueFont = [UIFont systemFontOfSize:9.f];
-        set1.formLineDashLengths = @[@5.f, @2.5f];
-        set1.formLineWidth = 1.0;
-        set1.formSize = 15.0;
-        
-        NSArray *gradientColors = @[(id)[ChartColorTemplates colorFromString:@"#FFFFFFFF"].CGColor,
-                                    (id)[ChartColorTemplates colorFromString:@"#FF007FFF"].CGColor];
-        CGGradientRef gradient = CGGradientCreateWithColors(nil, (CFArrayRef)gradientColors, nil);
-        set1.fillAlpha = 0.3f;//透明度
-        set1.fill = [ChartFill fillWithLinearGradient:gradient angle:90.f];//赋值填充颜色对象
-        set1.drawFilledEnabled = YES;//是否填充颜色
-        CGGradientRelease(gradient);
-        //将 LineChartDataSet 对象放入数组中
-        NSMutableArray *dataSets = [[NSMutableArray alloc] init];
-        [dataSets addObject:set1];
-        
-        LineChartData *data = [[LineChartData alloc] initWithDataSets:dataSets];
-        [_chartView zoomWithScaleX:5.f scaleY:1.f x:0.f y:0.f];
 
-        _chartView.data = data;
-    }
-}
 #pragma mark - IAxisValueFormatter
 
 - (NSString *)stringForValue:(double)value

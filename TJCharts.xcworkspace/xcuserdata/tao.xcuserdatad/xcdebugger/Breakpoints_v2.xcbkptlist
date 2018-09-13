@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TJCharts/PieChartViewController.m"
-            timestampString = "558453833.5964071"
+            timestampString = "558519358.7311291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TJCharts/LineChartViewController.m"
-            timestampString = "558518017.0242161"
+            timestampString = "558519358.731194"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "LineChartViewController"
             landmarkType = "3">
          </BreakpointContent>

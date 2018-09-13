@@ -32,10 +32,10 @@
     // Do any additional setup after loading the view.
     //创建饼状图
     [self.view addSubview:self.chartView];
-    CGFloat chartW =[self getScreenSize].width - 20;
-    CGFloat chartH =[self getScreenSize].height - 250;
+    CGFloat width =[UIScreen mainScreen].bounds.size.width - 20;
+    CGFloat height =[UIScreen mainScreen].bounds.size.height - 250;
     [self.chartView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(chartW, chartH));
+        make.size.mas_equalTo(CGSizeMake(width, height));
         make.center.mas_equalTo(self.view);
     }];
 
