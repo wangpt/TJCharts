@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Masonry.h"
 #import "TJCharts-Bridging-Header.h"
+#define TJRandomColor      [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0f]
 
 @interface ChartBaseViewController : UIViewController
 - (CGSize)getScreenSize;

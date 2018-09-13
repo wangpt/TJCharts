@@ -9,9 +9,9 @@
 #import "LineChartViewController.h"
 #import "TJCharts-Bridging-Header.h"
 
-@interface LineChartViewController ()
-@property (nonatomic,strong)LineChartView *chartView;
-
+@interface LineChartViewController ()<IChartAxisValueFormatter>
+@property (nonatomic, strong)LineChartView *chartView;
+@property (nonatomic, copy)NSArray *months;
 @end
 
 @implementation LineChartViewController
@@ -20,75 +20,69 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    //初始化对象
+    _months = @[@"第一",@"第二",@"第三",@"第四",@"第五",@"第六",@"第七"];
     CGFloat width =[UIScreen mainScreen].bounds.size.width - 20;
     CGFloat height =[UIScreen mainScreen].bounds.size.height - 300;
-    self.chartView = ({
-        LineChartView *chartView = [[LineChartView alloc] init];
-        [self.view addSubview:chartView];
-        [chartView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _chartView = ({
+        //1.初始化对象
+        LineChartView *lineChart = [[LineChartView alloc] init];
+        [self.view addSubview:lineChart];
+        [lineChart mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(width, height));
             make.center.mas_equalTo(self.view);
         }];
-        chartView;
+        //2.设置交互样式
+        lineChart.noDataText = @"暂无数据";//没有数据时的文字提示
+        lineChart.rightAxis.enabled = NO;//不绘制右边轴
+        lineChart.drawGridBackgroundEnabled = NO;//是否绘制网格背景的标志
+        lineChart.chartDescription.enabled = NO;//是否显示图标描述
+        lineChart.chartDescription.text = @"折现图";
+        lineChart.scaleXEnabled = NO;//取消X轴缩放
+        lineChart.scaleYEnabled = NO;//取消Y轴缩放
+        lineChart.pinchZoomEnabled = NO;//XY轴是否同时缩放
+        lineChart.doubleTapToZoomEnabled = NO;//取消双击缩放
+        lineChart.dragEnabled = YES;//启用拖拽图表
+        lineChart.dragDecelerationEnabled = YES;//拖拽饼状图后是否有惯性效果
+        //3.设置x轴的样式
+        ChartXAxis *xAxis = lineChart.xAxis;
+        xAxis.drawGridLinesEnabled = NO;//不绘制网格线为NO 绘制为YES
+        xAxis.axisLineWidth = 1.0/[UIScreen mainScreen].scale;//设置X轴线宽
+        xAxis.labelPosition = XAxisLabelPositionBottom;//X轴的显示位置，默认是显示在上面的
+        xAxis.labelTextColor = [UIColor blueColor];//label文字颜色
+        xAxis.axisLineColor = [UIColor blueColor];//x轴线的颜色
+        leftAxis.drawGridLinesEnabled = NO;//不绘制网格线
+        leftAxis.axisLineWidth = 1.0/[UIScreen mainScreen].scale;//Y轴线宽
+        leftAxis.labelCount = 5;//Y轴label数量，数值不一定，如果forceLabelsEnabled等于YES, 则强制绘制制定数量的label, 但是可能不平均
+        leftAxis.forceLabelsEnabled = NO;//不强制绘制指定数量的label
+        //    leftAxis.axisMaximum = 150.0;//设置Y轴的最大值
+        leftAxis.axisMinimum = 0.0;//设置Y轴的最小值
+        leftAxis.drawZeroLineEnabled = NO;//从0开始绘画
+        leftAxis.spaceTop = 0.05;//最大值到顶部的范围比
+        leftAxis.drawLimitLinesBehindDataEnabled = YES;//设置限制线绘制在柱形图的后面
+        leftAxis.labelPosition = YAxisLabelPositionOutsideChart;//label位置
+        leftAxis.labelTextColor =  [UIColor blueColor];//label文字颜色
+        leftAxis.axisLineColor = [UIColor blueColor];//轴线的颜色
+        leftAxis.labelFont = [UIFont systemFontOfSize:10.0f];//文字字体
+        //5.图例样式
+        ChartLegend *l = lineChart.legend;//
+        l.enabled = YES;//显示图例说明
+        l.horizontalAlignment = ChartLegendHorizontalAlignmentCenter;//水平方向
+        l.verticalAlignment = ChartLegendVerticalAlignmentTop;//垂直方向
+        l.orientation = ChartLegendOrientationHorizontal;//方向
+        l.drawInside = NO;
+        l.xEntrySpace = 7.0;
+        l.yEntrySpace = 0.0;
+        l.yOffset = 0.0;
+        l.formToTextSpace = 5;//文本间隔
+        l.font = [UIFont systemFontOfSize:10];//字体大小
+        l.form = ChartLegendFormCircle;//图示样式: 方形、线条、圆形
+        l.formSize = 12;//图示大小
+        l.textColor = [UIColor grayColor];//字体颜色
+        lineChart;
     });
-    //2.设置基本样式
-    _chartView.noDataText = @"暂无数据";//没有数据时的文字提示
-    _chartView.rightAxis.enabled = NO;//不绘制右边轴
-    _chartView.drawGridBackgroundEnabled = NO;//是否绘制网格背景的标志
-    _chartView.chartDescription.enabled = NO;//是否显示图标描述
-    _chartView.chartDescription.text = @"折现图";
-    //设置交互样式
-    _chartView.scaleXEnabled = NO;//取消X轴缩放
-    _chartView.scaleYEnabled = NO;//取消Y轴缩放
-    _chartView.pinchZoomEnabled = NO;//XY轴是否同时缩放
-    _chartView.doubleTapToZoomEnabled = NO;//取消双击缩放
-    _chartView.dragEnabled = YES;//启用拖拽图表
-    _chartView.dragDecelerationEnabled = YES;//拖拽饼状图后是否有惯性效果
+
+    [self updateChartData];//添加数据
     
-    //3.设置x轴的样式
-    ChartXAxis *xAxis = self.chartView.xAxis;
-    xAxis.drawGridLinesEnabled = NO;//不绘制网格线为NO 绘制为YES
-    xAxis.axisLineWidth = 1.0/[UIScreen mainScreen].scale;//设置X轴线宽
-    xAxis.labelPosition = XAxisLabelPositionBottom;//X轴的显示位置，默认是显示在上面的
-    xAxis.labelTextColor = [UIColor blueColor];//label文字颜色
-    xAxis.axisLineColor = [UIColor blueColor];//x轴线的颜色
-    //4.设置y轴的样式
-    ChartYAxis *leftAxis = self.chartView.leftAxis;//获取左边Y轴
-    leftAxis.drawGridLinesEnabled = NO;//不绘制网格线
-    leftAxis.axisLineWidth = 1.0/[UIScreen mainScreen].scale;//Y轴线宽
-    leftAxis.labelCount = 5;//Y轴label数量，数值不一定，如果forceLabelsEnabled等于YES, 则强制绘制制定数量的label, 但是可能不平均
-    leftAxis.forceLabelsEnabled = NO;//不强制绘制指定数量的label
-//    leftAxis.axisMaximum = 150.0;//设置Y轴的最大值
-    leftAxis.axisMinimum = 0.0;//设置Y轴的最小值
-    leftAxis.drawZeroLineEnabled = YES;//从0开始绘画
-    leftAxis.spaceTop = 0.15;//最大值到顶部的范围比
-    leftAxis.drawLimitLinesBehindDataEnabled = YES;//设置限制线绘制在柱形图的后面
-    leftAxis.labelPosition = YAxisLabelPositionOutsideChart;//label位置
-    leftAxis.labelTextColor =  [UIColor blueColor];//label文字颜色
-    leftAxis.axisLineColor = [UIColor blueColor];//轴线的颜色
-    leftAxis.labelFont = [UIFont systemFontOfSize:10.0f];//文字字体
-//    leftAxis.gridLineDashLengths = @[@3.0f, @3.0f];//设置虚线样式的网格线
-//    leftAxis.gridColor = [UIColor colorWithRed:200/255.0f green:200/255.0f blue:200/255.0f alpha:1];//网格线颜色
-//    leftAxis.gridAntialiasEnabled = YES;//开启抗锯齿
-    //5.图例样式
-    ChartLegend *l = _chartView.legend;//
-    l.enabled = YES;//显示图例说明
-    l.horizontalAlignment = ChartLegendHorizontalAlignmentCenter;//水平方向
-    l.verticalAlignment = ChartLegendVerticalAlignmentTop;//垂直方向
-    l.orientation = ChartLegendOrientationHorizontal;//方向
-    l.drawInside = NO;
-    l.xEntrySpace = 7.0;
-    l.yEntrySpace = 0.0;
-    l.yOffset = 0.0;
-    l.formToTextSpace = 5;//文本间隔
-    l.font = [UIFont systemFontOfSize:10];//字体大小
-    l.form = ChartLegendFormCircle;//图示样式: 方形、线条、圆形
-    l.formSize = 12;//图示大小
-    l.textColor = [UIColor grayColor];//字体颜色
-    [self updateChartData];
-    
-    [_chartView animateWithXAxisDuration:1.5];
 }
 - (IBAction)reloadDataClick:(id)sender {
     [self updateChartData];
@@ -96,49 +90,54 @@
 
 - (void)updateChartData
 {
-    [self setLineDataCount:12 range:100];
-}
-//count 总个数 range 数量
-- (void)setLineDataCount:(int)count range:(double)range
-{
+    double range = 100;//最大随机数
+    NSInteger lineCount = 2;//条数
     //添加随机数据
-    NSMutableArray *yVals1 = [[NSMutableArray alloc] init];
-    for (int i = 0; i < count; i++)
-    {
-        double val = arc4random_uniform(range) + 3;
-        [yVals1 addObject:[[ChartDataEntry alloc] initWithX:i y:val]];
+    NSMutableArray *all_vals = @[].mutableCopy;
+    for (int count = 0; count<lineCount; count++) {
+        NSMutableArray *yVals = [[NSMutableArray alloc] init];
+        for (int i = 0; i < _months.count; i++)
+        {
+            double val = arc4random_uniform(range) + 10;
+            [yVals addObject:[[ChartDataEntry alloc] initWithX:i y:val]];
+        }
+        [all_vals addObject:yVals];
     }
-    LineChartDataSet *set1 = nil;
+    
     if (_chartView.data.dataSetCount > 0)
     {//更新数据
-        set1 = (LineChartDataSet *)_chartView.data.dataSets[0];
-        set1.values = yVals1;
+        [all_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            LineChartDataSet *set = (LineChartDataSet *)_chartView.data.dataSets[idx];
+            set.values = obj;
+        }];
         [_chartView.data notifyDataChanged];
         [_chartView notifyDataSetChanged];
-    }
-    else
-    {//首次生成
-        set1 = [[LineChartDataSet alloc] initWithValues:yVals1 label:@"第一条"];
-        [set1 setColor:UIColor.redColor];
-        [set1 setCircleColor:UIColor.redColor];//拐点颜色
-        set1.lineWidth = 1.0;
-        set1.circleRadius = 3.0;
-//        set1.highlightColor = [UIColor colorWithRed:244/255.f green:117/255.f blue:117/255.f alpha:1.f];
-        set1.drawCircleHoleEnabled =NO;
-        set1.drawCirclesEnabled = NO;//是否绘制拐点
-        set1.drawCubicEnabled = YES;
+    
+    }else{
         NSMutableArray *dataSets = [[NSMutableArray alloc] init];
-        [dataSets addObject:set1];
 
+        [all_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *label = [NSString stringWithFormat:@"第%lu条",(unsigned long)idx+1];
+            LineChartDataSet *set = [[LineChartDataSet alloc] initWithValues:all_vals[idx] label:label];
+            [set setColor:TJRandomColor];
+            set.lineWidth = 1.0;//线条宽度
+            set.drawCircleHoleEnabled =NO;
+            [set setCircleColor:UIColor.redColor];//拐点颜色
+            set.circleRadius = 3.0;//拐点半径
+            set.drawCirclesEnabled = NO;//是否绘制拐点
+            set.drawCubicEnabled = YES;
+            [dataSets addObject:set];
+        }];
         LineChartData *data = [[LineChartData alloc] initWithDataSets:dataSets];
-        [data setValueTextColor:UIColor.blackColor];
-        [data setValueFont:[UIFont systemFontOfSize:9.f]];
-
+        [data setValueTextColor:UIColor.blackColor];//文字颜色
+        [data setValueFont:[UIFont systemFontOfSize:9.f]];//文字大小
         _chartView.data = data;
-
     }
-}
+    
+    [_chartView animateWithXAxisDuration:0.5];
 
+    
+}
 
 - (void)setFillDataCount:(int)count range:(double)range
 {
@@ -192,20 +191,14 @@
         _chartView.data = data;
     }
 }
+#pragma mark - IAxisValueFormatter
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSString *)stringForValue:(double)value
+                        axis:(ChartAxisBase *)axis
+{
+    NSInteger index = value;
+    return _months[index];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
