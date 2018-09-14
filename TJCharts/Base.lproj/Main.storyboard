@@ -100,6 +100,26 @@
                                             <segue destination="FhL-KI-rYL" kind="push" identifier="radarChart" id="5yO-qP-G76"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" id="hnX-D9-v72">
+                                        <rect key="frame" x="0.0" y="176" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hnX-D9-v72" id="LL2-qE-JE7">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="横行柱状图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xB9-Xq-Y4y">
+                                                    <rect key="frame" x="15" y="0.0" width="325" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="eAQ-3K-5IB" kind="push" identifier="hbarChart" id="2mD-8H-vSO"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -113,6 +133,31 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JgX-0y-gRL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-220" y="-430"/>
+        </scene>
+        <!--横行柱状图-->
+        <scene sceneID="W03-0x-FOO">
+            <objects>
+                <viewController id="eAQ-3K-5IB" customClass="HorizontalBarChartController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PGO-MZ-Qwb"/>
+                        <viewControllerLayoutGuide type="bottom" id="OFI-gR-a8B"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vu9-8d-fEX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="横行柱状图" id="tWc-9V-96v">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="N8a-0V-hWh">
+                            <connections>
+                                <action selector="reloadDataClick:" destination="eAQ-3K-5IB" id="1Od-kp-Z42"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Esh-yp-kE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1210" y="-169"/>
         </scene>
         <!--雷达图-->
         <scene sceneID="bRg-Ow-eSf">

@@ -15,5 +15,4 @@
 - (CGSize)getScreenSize;
 - (UIColor *)colorWithHexString:(NSString *)color ;
 - (void)setupBarLineChartView:(BarLineChartViewBase *)chartView;
-- (void)setupPieChartView:(PieChartView *)chartView;
 @end

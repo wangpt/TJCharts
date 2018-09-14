@@ -68,6 +68,8 @@
         
         xAxis.labelTextColor = [UIColor blueColor];//label文字颜色
         
+        xAxis.granularity = 1.0; // 最小的间隔避免文字重叠
+
         xAxis.axisLineColor = [UIColor blueColor];//x轴线的颜色
         
         xAxis.valueFormatter = self;//用于设置x轴文字显示
