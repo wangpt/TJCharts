@@ -8,9 +8,9 @@
 
 #import "HorizontalBarChartController.h"
 #import "TJCharts-Bridging-Header.h"
-
-@interface HorizontalBarChartController ()<IChartAxisValueFormatter>
-@property (nonatomic, strong) BarChartView *chartView;
+#import "TJBarValueFormatter.h"
+@interface HorizontalBarChartController ()
+@property (nonatomic, strong) HorizontalBarChartView *chartView;
 @property (nonatomic, copy)NSArray *months;
 
 @end
@@ -34,12 +34,13 @@
             make.center.mas_equalTo(self.view);
         }];
         //设置基本样式
-        barChartView.noDataText = @"暂无数据";//没有数据时的文字提示
+        barChartView.noDataText = @"";//没有数据时的文字提示
         barChartView.drawValueAboveBarEnabled = YES;//数值显示在柱形的上面还是下面
         barChartView.drawBarShadowEnabled = NO;//是否绘制柱形的阴影背景
         barChartView.chartDescription.enabled = NO;//是否显示图标描述
         barChartView.drawGridBackgroundEnabled = NO;//是否绘制网格背景的标志
         barChartView.leftAxis.enabled = NO;//不绘制左边Y轴样式
+        barChartView.fitBars = YES;
 
         //设置交互样式
         barChartView.scaleYEnabled = NO;//取消Y轴缩放
@@ -59,7 +60,7 @@
         xAxis.axisLineColor = [UIColor blueColor];
         xAxis.axisLineWidth = 0.5;//Y轴线宽
         xAxis.labelTextColor = [UIColor blueColor];
-        xAxis.valueFormatter = self;
+        xAxis.valueFormatter = [[TJBarValueFormatter alloc]init];
         
         //右侧X轴样式
         ChartYAxis *rightAxis = barChartView.rightAxis;
@@ -72,9 +73,9 @@
         rightAxis.yOffset = 3;
         ChartLegend *l = barChartView.legend;//
         l.enabled = NO;//不显示图例说明
+
         barChartView;
     });
-    _chartView.fitBars = YES;
     [self updateChartData];
     [_chartView animateWithYAxisDuration:1.5];
     
@@ -117,14 +118,6 @@
         _chartView.data = data;
     }
     
-}
-#pragma mark - IAxisValueFormatter
-
-- (NSString *)stringForValue:(double)value
-                        axis:(ChartAxisBase *)axis
-{
-    int index = (int)value;
-    return _months[index];
 }
 
 - (IBAction)reloadDataClick:(id)sender {

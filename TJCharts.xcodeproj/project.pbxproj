@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2BB2664C214B4EE6000EA061 /* HorizontalBarChartController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2664B214B4EE6000EA061 /* HorizontalBarChartController.m */; };
+		2BB26654214B9C3B000EA061 /* TJBarValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB26653214B9C3B000EA061 /* TJBarValueFormatter.m */; };
 		A848F2661E4C743A0012309C /* BarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A848F2651E4C743A0012309C /* BarChartViewController.m */; };
 		A8C63FA01E4AA8A4006FAB36 /* ChartBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63F9F1E4AA8A4006FAB36 /* ChartBaseViewController.m */; };
 		A8C63FA31E4AB179006FAB36 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FA21E4AB179006FAB36 /* PieChartViewController.m */; };
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		2BB2664A214B4EE6000EA061 /* HorizontalBarChartController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HorizontalBarChartController.h; sourceTree = "<group>"; };
 		2BB2664B214B4EE6000EA061 /* HorizontalBarChartController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalBarChartController.m; sourceTree = "<group>"; };
+		2BB26652214B9C3B000EA061 /* TJBarValueFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJBarValueFormatter.h; sourceTree = "<group>"; };
+		2BB26653214B9C3B000EA061 /* TJBarValueFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJBarValueFormatter.m; sourceTree = "<group>"; };
 		4920C2E3CB3BC8DA69F21AC1 /* Pods-TJCharts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJCharts.release.xcconfig"; path = "Pods/Target Support Files/Pods-TJCharts/Pods-TJCharts.release.xcconfig"; sourceTree = "<group>"; };
 		65548994795799B681B26C68 /* Pods_TJCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TJCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		781C62847D269333A9E020EE /* Pods-TJCharts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJCharts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJCharts/Pods-TJCharts.debug.xcconfig"; sourceTree = "<group>"; };
@@ -80,6 +83,8 @@
 				A8F22CB41E5141F90071C05C /* LineChartViewController.m */,
 				2BB2664A214B4EE6000EA061 /* HorizontalBarChartController.h */,
 				2BB2664B214B4EE6000EA061 /* HorizontalBarChartController.m */,
+				2BB26652214B9C3B000EA061 /* TJBarValueFormatter.h */,
+				2BB26653214B9C3B000EA061 /* TJBarValueFormatter.m */,
 			);
 			name = Charts;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 				A8C63FA31E4AB179006FAB36 /* PieChartViewController.m in Sources */,
 				2BB2664C214B4EE6000EA061 /* HorizontalBarChartController.m in Sources */,
 				A848F2661E4C743A0012309C /* BarChartViewController.m in Sources */,
+				2BB26654214B9C3B000EA061 /* TJBarValueFormatter.m in Sources */,
 				A8EACC831E49BE0C006E787F /* main.m in Sources */,
 				A8C63FA81E4B057E006FAB36 /* RadarChartViewController.m in Sources */,
 				A8F22CB51E5141F90071C05C /* LineChartViewController.m in Sources */,
