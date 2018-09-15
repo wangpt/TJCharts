@@ -41,6 +41,7 @@
         barChartView.drawGridBackgroundEnabled = NO;//是否绘制网格背景的标志
         barChartView.leftAxis.enabled = NO;//不绘制左边Y轴样式
         barChartView.fitBars = YES;
+        barChartView.extraBottomOffset = 20;//视图向上偏移20像素
 
         //设置交互样式
         barChartView.scaleYEnabled = NO;//取消Y轴缩放
@@ -76,8 +77,16 @@
 
         barChartView;
     });
+#define IS_MultipleChartData 1
+    ChartXAxis *xAxis = _chartView.xAxis;
+#if IS_MultipleChartData
+    xAxis.centerAxisLabelsEnabled = YES;//文字显示在中心
+    [self updateMultipleChartData];
+#else
+    xAxis.centerAxisLabelsEnabled = NO;//文字不显示在中心
     [self updateChartData];
-    [_chartView animateWithYAxisDuration:1.5];
+#endif
+    
     
 }
 
@@ -117,12 +126,75 @@
         data.barWidth = 0.9f;
         _chartView.data = data;
     }
+    [_chartView animateWithYAxisDuration:1.5];
+
+}
+
+#pragma mark - 多组数据
+- (void)updateMultipleChartData{
+    
+    double range = 100;//最大随机数
+    NSInteger lineCount = 2;//条数
+    NSInteger groupCount = 5;//多少组
+    int startX = 0;
+    float groupSpace = 0.2f;
+    float barSpace = 0.03f;
+    float barWidth = ( 1- groupSpace)/lineCount -barSpace;// (barWidth +barSpace)*lineCount+groupSpace = 1
+    //添加随机数据
+    NSMutableArray *all_vals = @[].mutableCopy;
+    for (int count = 0; count < lineCount; count++) {
+        NSMutableArray *yVals = [[NSMutableArray alloc] init];
+        for (int i = 0; i < groupCount; i++)
+        {
+            double val = arc4random_uniform(range) + 10;
+            [yVals addObject:[[BarChartDataEntry alloc] initWithX:i y:val]];
+        }
+        [all_vals addObject:yVals];
+    }
+    
+    if (_chartView.data.dataSetCount > 0)
+    {
+        [all_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            BarChartDataSet *set = (BarChartDataSet *)_chartView.data.dataSets[idx];
+            set.values = obj;
+        }];
+        BarChartData *data = _chartView.barData;
+        _chartView.xAxis.axisMinimum = startX;
+        _chartView.xAxis.axisMaximum = [data groupWidthWithGroupSpace:groupSpace barSpace: barSpace] * groupCount + startX;
+        [data groupBarsFromX: startX groupSpace: groupSpace barSpace: barSpace];
+        [_chartView.data notifyDataChanged];
+        [_chartView notifyDataSetChanged];
+    }
+    else
+    {
+        NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+        [all_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSString *label = [NSString stringWithFormat:@"第%lu条",(unsigned long)idx+1];
+            BarChartDataSet *set = [[BarChartDataSet alloc] initWithValues:all_vals[idx] label:label];
+            [set setColor:TJRandomColor];
+            
+            [dataSets addObject:set];
+        }];
+        
+        BarChartData *data = [[BarChartData alloc] initWithDataSets:dataSets];
+        [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:10.f]];
+        data.barWidth = barWidth;
+        _chartView.xAxis.axisMinimum = startX;
+        _chartView.xAxis.axisMaximum = startX + [data groupWidthWithGroupSpace:groupSpace barSpace: barSpace] * groupCount;
+        [data groupBarsFromX: startX groupSpace: groupSpace barSpace: barSpace];
+        _chartView.data = data;
+    }
+    [_chartView animateWithYAxisDuration:1.5];
     
 }
 
+
 - (IBAction)reloadDataClick:(id)sender {
+#if IS_MultipleChartData
+    [self updateMultipleChartData];
+#else
     [self updateChartData];
-    
+#endif
 }
 
 

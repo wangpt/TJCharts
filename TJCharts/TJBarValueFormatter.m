@@ -23,6 +23,9 @@
 - (NSString *)stringForValue:(double)value axis:(ChartAxisBase *)axis
 {
     int index = (int)value;
+    if (index < 0) {
+        return @"";
+    }
     return _months[index];
     
 }
