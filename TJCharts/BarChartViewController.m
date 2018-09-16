@@ -26,13 +26,14 @@
     CGFloat chartW =[UIScreen mainScreen].bounds.size.width - 20;
     CGFloat chartH =[UIScreen mainScreen].bounds.size.height - 300;
     _chartView = ({
+        //1.初始化对象
         BarChartView *barChartView = [[BarChartView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
         [self.view addSubview:barChartView];
         [barChartView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(chartW, chartH));
             make.center.mas_equalTo(self.view);
         }];
-        //设置基本样式
+        //2.设置交互样式
         barChartView.extraBottomOffset = 20;//视图向上偏移20像素
         barChartView.fitBars = YES;//视图自适应
         barChartView.noDataText = @"暂无数据";//没有数据时的文字提示
@@ -41,8 +42,6 @@
         barChartView.rightAxis.enabled = NO;//不绘制右边轴
         barChartView.chartDescription.enabled = NO;//是否显示图标描述
         barChartView.drawGridBackgroundEnabled = NO;//是否绘制网格背景的标志
-
-        //设置交互样式
         barChartView.scaleYEnabled = NO;//取消Y轴缩放
         barChartView.doubleTapToZoomEnabled = NO;//取消双击缩放
         barChartView.dragEnabled = NO;//启用拖拽图表
@@ -50,8 +49,7 @@
         [barChartView setScaleEnabled:YES];//图表是否可以进行缩放
         barChartView.pinchZoomEnabled = NO;//缩放设置
         barChartView.maxVisibleCount = 60;//图标上的数字展示的最大个数,如果不想显示上面的数字，就可以把maxVisibleCount属性设置为0
-
-        //X轴样式
+        //3.X轴样式
         ChartXAxis *xAxis = barChartView.xAxis;
         xAxis.granularity = 1.0; //设置最小间隔,防止当放大时,出现重复标签
         xAxis.drawGridLinesEnabled = NO;//不绘制网格线
@@ -60,8 +58,7 @@
         xAxis.axisLineColor = [UIColor blueColor];
         xAxis.axisLineWidth = 0.5;//Y轴线宽
         xAxis.labelTextColor = [UIColor blueColor];
-        
-        //左边Y轴样式
+        //4.左边Y轴样式
         ChartYAxis *leftAxis = barChartView.leftAxis;
         leftAxis.drawGridLinesEnabled = NO;//不绘制网格线
         leftAxis.forceLabelsEnabled = NO;//不强制绘制制定数量的label
@@ -79,6 +76,7 @@
 //        leftAxis.gridColor = [UIColor colorWithRed:200/255.0f green:200/255.0f blue:200/255.0f alpha:1];//网格线颜色
 //        leftAxis.gridAntialiasEnabled = YES;//开启抗锯齿
 //        //
+        //5.图例样式
         ChartLegend *l = barChartView.legend;//
         l.enabled = YES;//不显示图例说明
         barChartView;

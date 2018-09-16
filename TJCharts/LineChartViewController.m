@@ -43,7 +43,6 @@
         lineChart.doubleTapToZoomEnabled = NO;//取消双击缩放
         lineChart.dragEnabled = YES;//启用拖拽图表
         lineChart.dragDecelerationEnabled = YES;//拖拽饼状图后是否有惯性效果
-       
         //3.设置x轴的样式
         ChartXAxis *xAxis = lineChart.xAxis;
         xAxis.drawGridLinesEnabled = NO;//不绘制网格线为NO 绘制为YES
@@ -55,7 +54,6 @@
         xAxis.valueFormatter = self;//用于设置x轴文字显示
         xAxis.spaceMin = 0.5;//设置坐标轴额外的最小空间
         xAxis.spaceMax = 0.5;//设置坐标轴额外的最大空间
-        
         //4.设置y轴的样式
         ChartYAxis *leftAxis = lineChart.leftAxis;//获取左边Y轴
         leftAxis.drawGridLinesEnabled = NO;//不绘制网格线
@@ -71,9 +69,7 @@
         leftAxis.labelTextColor =  [UIColor blueColor];//label文字颜色
         leftAxis.axisLineColor = [UIColor blueColor];//轴线的颜色
         leftAxis.labelFont = [UIFont systemFontOfSize:10.0f];//文字字体
-       
         //5.图例样式
-        
         ChartLegend *l = lineChart.legend;//
         l.enabled = YES;//显示图例说明
         l.horizontalAlignment = ChartLegendHorizontalAlignmentCenter;//水平方向
@@ -102,7 +98,6 @@
 {
     double range = 100;//最大随机数
     NSInteger lineCount = 2;//条数
-    
     //添加随机数据
     NSMutableArray *allLine_vals = @[].mutableCopy;
     for (int count = 0; count<lineCount; count++) {
@@ -117,7 +112,6 @@
     
     if (_chartView.data.dataSetCount > 0)
     {//更新数据
-        
         [allLine_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             LineChartDataSet *set = (LineChartDataSet *)_chartView.data.dataSets[idx];
             set.values = obj;
@@ -132,7 +126,6 @@
             LineChartDataSet *set = [[LineChartDataSet alloc] initWithValues:allLine_vals[idx] label:label];
             [set setColor:TJRandomColor];
             set.lineWidth = 1.0;//线条宽度
-            
             set.drawCircleHoleEnabled =NO;
             [set setCircleColor:UIColor.redColor];//拐点颜色
             set.circleRadius = 3.0;//拐点半径
@@ -153,7 +146,6 @@
         [data setValueFont:[UIFont systemFontOfSize:9.f]];//文字大小
         _chartView.data = data;
     }
-    
     [_chartView animateWithXAxisDuration:0.5];
 }
 

@@ -21,18 +21,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //创建饼状图
-    
-    CGFloat chartW =[self getScreenSize].width - 20;
-    CGFloat chartH =[self getScreenSize].height - 250;
+    CGFloat chartW =[UIScreen mainScreen].bounds.size.width - 20;
+    CGFloat chartH =[UIScreen mainScreen].bounds.size.height - 250;
     _chartView = ({
+        //1.初始化对象
         PieChartView *pieChart = [PieChartView new];
         [self.view addSubview:pieChart];
         [pieChart mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(chartW, chartH));
             make.center.mas_equalTo(self.view);
         }];
-        
-        //基础属性
+        //2.设置交互样式
         [pieChart setExtraOffsetsWithLeft:5.f top:10.f right:5.f bottom:5.f];//饼状图距离边缘的间隙
         pieChart.usePercentValuesEnabled = YES;//是否根据所提供的数据, 将显示数据转换为百分比格式
         pieChart.dragDecelerationEnabled = YES;//拖拽饼状图后是否有惯性效果
@@ -56,8 +55,7 @@
                                 range:NSMakeRange(0, centerText.length)];
             pieChart.centerAttributedText = centerText;
         }
-        
-        //饼状图描述
+        //3.图例样式
         ChartLegend *l = pieChart.legend;
         l.enabled = YES;//隐藏描述
         l.form = ChartLegendFormCircle;//图示样式: 方形、线条、圆形
@@ -65,7 +63,6 @@
         l.font = [UIFont systemFontOfSize:10];//字体大小
         l.textColor = [UIColor grayColor];//字体颜色
         pieChart;
-        
     });
 
     [self updateChartData];
@@ -113,9 +110,7 @@
     dataSet.valueLineColor = [UIColor brownColor];//折线颜色
 //    dataSet.xValuePosition = PieChartValuePositionOutsideSlice;//名称位置
     dataSet.yValuePosition = PieChartValuePositionOutsideSlice;//数据位置
-    
     PieChartData *data = [[PieChartData alloc] initWithDataSet:dataSet];
-    
     NSNumberFormatter *pFormatter = [[NSNumberFormatter alloc] init];
     pFormatter.numberStyle = NSNumberFormatterPercentStyle;
     pFormatter.maximumFractionDigits = 1;
@@ -124,7 +119,6 @@
     [data setValueFormatter:[[ChartDefaultValueFormatter alloc] initWithFormatter:pFormatter]];
     [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:11.f]];
     [data setValueTextColor:UIColor.blackColor];
-    
     _chartView.data = data;
     [_chartView highlightValues:nil];
     [_chartView animateWithXAxisDuration:1.4 easingOption:ChartEasingOptionEaseOutBack];

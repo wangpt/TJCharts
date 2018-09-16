@@ -19,10 +19,7 @@
 //    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor colorWithRed:230.0 / 255.0 green:253.0 / 255.0 blue:253.0 / 255.0 alpha:1.0f];
 }
-- (CGSize)getScreenSize{
-    
-    return [UIScreen mainScreen].bounds.size;
-}
+
 //将十六进制颜色转换为 UIColor 对象
 - (UIColor *)colorWithHexString:(NSString *)color{
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
@@ -56,27 +53,6 @@
     [[NSScanner scannerWithString:bString] scanHexInt:&b];
     return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
 }
-
-- (void)setupBarLineChartView:(BarLineChartViewBase *)chartView{
-    //设置基本样式
-    chartView.chartDescription.enabled = NO;//是否显示图标描述
-    chartView.drawGridBackgroundEnabled = NO;//是否绘制网格背景的标志
-    chartView.noDataText = @"暂无数据";//没有数据时的文字提示
-    chartView.dragEnabled = YES;//启用拖拽图表
-    [chartView setScaleEnabled:YES];//图表是否可以进行缩放
-    chartView.pinchZoomEnabled = NO;//缩放设置
-    //设置交互样式
-    chartView.scaleYEnabled = NO;//取消Y轴缩放
-    chartView.doubleTapToZoomEnabled = NO;//取消双击缩放
-    //设置x轴的样式
-    ChartXAxis *xAxis = chartView.xAxis;
-    xAxis.labelPosition = XAxisLabelPositionBottom;//x轴文字显示位置
-    //    xAxis.drawGridLinesEnabled = NO;//不绘制网格线
-    //右边Y轴样式
-    chartView.rightAxis.enabled = NO;//不绘制右边轴
-
-}
-
 
 
 - (void)didReceiveMemoryWarning {

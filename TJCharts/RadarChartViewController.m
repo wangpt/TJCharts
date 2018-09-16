@@ -8,7 +8,7 @@
 
 #import "RadarChartViewController.h"
 #import "TJCharts-Bridging-Header.h"
-#import "TJCharts-Swift.h"
+//#import "TJCharts-Swift.h"
 
 @interface RadarChartViewController ()<IChartAxisValueFormatter>
 {
@@ -26,36 +26,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //一、创建雷达图对象
+    
     CGFloat chartW =[UIScreen mainScreen].bounds.size.width - 20;
     CGFloat chartH =[UIScreen mainScreen].bounds.size.height - 200;
     activities = @[ @"交通", @"环境", @"客流量", @"服务", @"其他" ];
     _chartView = ({
+        //1、对象初始化
         RadarChartView *radarChartView = [[RadarChartView alloc] init];
         [self.view addSubview:radarChartView];
         [radarChartView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(chartW, chartH));
             make.center.mas_equalTo(self.view);
         }];
-        //基础样式
+        //2.设置交互样式
         radarChartView.rotationEnabled = YES;//是否允许转动
         radarChartView.highlightPerTapEnabled = NO;//是否能被选中
         radarChartView.chartDescription.enabled = NO;
-        //交互样式
         radarChartView.webLineWidth = 1.0;//主干线线宽
         radarChartView.innerWebLineWidth = 1.0;//边线宽度
         radarChartView.webColor = [self colorWithHexString:@"#c2ccd0"];////主干线颜色
         radarChartView.innerWebColor =  [self colorWithHexString:@"#c2ccd0"];//边线颜色
         radarChartView.webAlpha = 1.0;//透明度
-        //X轴label样式
+        //3.X轴label样式
         ChartXAxis *xAxis = radarChartView.xAxis;
         xAxis.labelFont = [UIFont systemFontOfSize:15];//字体
         xAxis.xOffset = 0.0;
         xAxis.yOffset = 0.0;
         xAxis.valueFormatter = self;
         xAxis.labelTextColor = [self colorWithHexString:@"#057748"];//颜色
-        
-        //Y轴label样式
+        //4.Y轴label样式
         ChartYAxis *yAxis = radarChartView.yAxis;
         yAxis.labelFont = [UIFont systemFontOfSize:9];//字体
         yAxis.labelTextColor = [UIColor lightGrayColor];// label 颜色
@@ -63,13 +62,12 @@
         yAxis.axisMinimum = 0.0;//最小值
         yAxis.axisMaximum = 100.0;//最大值
         yAxis.drawLabelsEnabled = NO;//是否显示 label
-        
-        //设置标注
+        //5.设置标注
         radarChartView.legend.enabled = NO;
-        //弹出 highlightPerTapEnabled = YES
-        RadarMarkerView *marker = (RadarMarkerView *)[RadarMarkerView viewFromXibIn:[NSBundle mainBundle]];
-        marker.chartView = radarChartView;
-        radarChartView.marker = marker;
+        //6.设置marker 需highlightPerTapEnabled = YES
+//        RadarMarkerView *marker = (RadarMarkerView *)[RadarMarkerView viewFromXibIn:[NSBundle mainBundle]];
+//        marker.chartView = radarChartView;
+//        radarChartView.marker = marker;
         radarChartView;
     });
 
@@ -97,7 +95,7 @@
     
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [allLine_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        RadarChartDataSet *set = [[RadarChartDataSet alloc] initWithValues:obj label:[NSString stringWithFormat:@"第%lu条",idx+1]];
+        RadarChartDataSet *set = [[RadarChartDataSet alloc] initWithValues:obj label:[NSString stringWithFormat:@"第%lu条",(unsigned long)idx+1]];
         UIColor *color = TJRandomColor;
         [set setColor:color];//数据折线颜色
         set.fillColor = color;//填充颜色

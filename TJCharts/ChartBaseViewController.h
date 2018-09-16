@@ -12,7 +12,5 @@
 #define TJRandomColor      [UIColor colorWithRed:arc4random_uniform(255)/255.0 green:arc4random_uniform(255)/255.0 blue:arc4random_uniform(255)/255.0 alpha:1.0f]
 
 @interface ChartBaseViewController : UIViewController
-- (CGSize)getScreenSize;
 - (UIColor *)colorWithHexString:(NSString *)color ;
-- (void)setupBarLineChartView:(BarLineChartViewBase *)chartView;
 @end
