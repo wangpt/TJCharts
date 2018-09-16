@@ -10,7 +10,6 @@
 #import "TJCharts-Bridging-Header.h"
 @interface PieChartViewController ()
 @property (nonatomic, strong) PieChartView *chartView;
-@property (nonatomic, assign) BOOL isSimple;
 
 @end
 
@@ -27,53 +26,30 @@
     CGFloat chartH =[self getScreenSize].height - 250;
     _chartView = ({
         PieChartView *pieChart = [PieChartView new];
-        
         [self.view addSubview:pieChart];
-        
         [pieChart mas_makeConstraints:^(MASConstraintMaker *make) {
             make.size.mas_equalTo(CGSizeMake(chartW, chartH));
             make.center.mas_equalTo(self.view);
         }];
         
         //基础属性
-        
         [pieChart setExtraOffsetsWithLeft:5.f top:10.f right:5.f bottom:5.f];//饼状图距离边缘的间隙
-
         pieChart.usePercentValuesEnabled = YES;//是否根据所提供的数据, 将显示数据转换为百分比格式
-        
         pieChart.dragDecelerationEnabled = YES;//拖拽饼状图后是否有惯性效果
-        
-        pieChart.drawSliceTextEnabled = YES;//是否显示区块文本
-        
         pieChart.chartDescription.enabled = NO;//饼状图描述文字
-
-        
         //空心圆样式(空心有两个圆组成, 一个是hole, 一个是transparentCircle, transparentCircle里面是hole, 所以饼状图中间的空心也就是一个同心圆)
-        
         pieChart.drawHoleEnabled = YES;//饼状图是否是空心
-        
         pieChart.rotationAngle = 0.0;//开始角度
-        
         pieChart.rotationEnabled = YES;//是否可以旋转
-        
         pieChart.highlightPerTapEnabled = NO;//是否可以点击
-        
         pieChart.holeRadiusPercent = 0.38;//空心半径占比
-        
         pieChart.holeColor = [UIColor clearColor];//空心颜色
-        
         pieChart.transparentCircleRadiusPercent = 0.41;//半透明空心半径占比
-        
-        
         if (pieChart.isDrawHoleEnabled == YES) {
             pieChart.drawCenterTextEnabled = YES;//是否显示中间文字
-            
             //普通文本
-            
             pieChart.centerText = @"";//中间文字
-
             //富文本
-            
             NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"饼状图"];
             [centerText setAttributes:@{NSFontAttributeName: [UIFont boldSystemFontOfSize:16],
                                         NSForegroundColorAttributeName: [UIColor orangeColor]}
@@ -82,21 +58,12 @@
         }
         
         //饼状图描述
-        
         ChartLegend *l = pieChart.legend;
-        
         l.enabled = YES;//隐藏描述
-        
         l.form = ChartLegendFormCircle;//图示样式: 方形、线条、圆形
-        
         l.formToTextSpace = 5;//文本间隔
-        
         l.font = [UIFont systemFontOfSize:10];//字体大小
-        
         l.textColor = [UIColor grayColor];//字体颜色
-
-        l.position = ChartLegendPositionBelowChartCenter;//图例在饼状图中的位置
-        
         pieChart;
         
     });

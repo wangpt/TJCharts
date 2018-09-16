@@ -63,7 +63,11 @@
         xAxis.labelTextColor = [UIColor blueColor];
         xAxis.valueFormatter = [[TJBarValueFormatter alloc]init];
         
-        //右侧X轴样式
+        //左侧Y轴
+        ChartYAxis *leftAxis = barChartView.leftAxis;
+        leftAxis.axisMinimum = 0.0; // this replaces startAtZero = YES
+        
+        //右侧Y轴样式
         ChartYAxis *rightAxis = barChartView.rightAxis;
         rightAxis.labelFont = [UIFont systemFontOfSize:10.f];
         rightAxis.labelPosition = XAxisLabelPositionBottom;//x轴文字显示位置
@@ -77,6 +81,7 @@
 
         barChartView;
     });
+    
 #define IS_MultipleChartData 1
     ChartXAxis *xAxis = _chartView.xAxis;
 #if IS_MultipleChartData
@@ -148,6 +153,7 @@
         {
             double val = arc4random_uniform(range) + 10;
             [yVals addObject:[[BarChartDataEntry alloc] initWithX:i y:val]];
+
         }
         [all_vals addObject:yVals];
     }
@@ -172,7 +178,7 @@
             NSString *label = [NSString stringWithFormat:@"第%lu条",(unsigned long)idx+1];
             BarChartDataSet *set = [[BarChartDataSet alloc] initWithValues:all_vals[idx] label:label];
             [set setColor:TJRandomColor];
-            
+            set.drawValuesEnabled = YES;//是否在柱形图上面显示数值，需要设置左侧Y轴axisMinimum，以及maxVisibleCount
             [dataSets addObject:set];
         }];
         
@@ -183,9 +189,9 @@
         _chartView.xAxis.axisMaximum = startX + [data groupWidthWithGroupSpace:groupSpace barSpace: barSpace] * groupCount;
         [data groupBarsFromX: startX groupSpace: groupSpace barSpace: barSpace];
         _chartView.data = data;
+        
     }
     [_chartView animateWithYAxisDuration:1.5];
-    
 }
 
 

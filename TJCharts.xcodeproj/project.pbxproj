@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2BB2664C214B4EE6000EA061 /* HorizontalBarChartController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB2664B214B4EE6000EA061 /* HorizontalBarChartController.m */; };
 		2BB26654214B9C3B000EA061 /* TJBarValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB26653214B9C3B000EA061 /* TJBarValueFormatter.m */; };
+		2BBD3F62214E0905008B9CA1 /* RadarMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD3F60214E0905008B9CA1 /* RadarMarkerView.swift */; };
+		2BBD3F63214E0905008B9CA1 /* RadarMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBD3F61214E0905008B9CA1 /* RadarMarkerView.xib */; };
 		A848F2661E4C743A0012309C /* BarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A848F2651E4C743A0012309C /* BarChartViewController.m */; };
 		A8C63FA01E4AA8A4006FAB36 /* ChartBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63F9F1E4AA8A4006FAB36 /* ChartBaseViewController.m */; };
 		A8C63FA31E4AB179006FAB36 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8C63FA21E4AB179006FAB36 /* PieChartViewController.m */; };
@@ -28,6 +30,8 @@
 		2BB2664B214B4EE6000EA061 /* HorizontalBarChartController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalBarChartController.m; sourceTree = "<group>"; };
 		2BB26652214B9C3B000EA061 /* TJBarValueFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TJBarValueFormatter.h; sourceTree = "<group>"; };
 		2BB26653214B9C3B000EA061 /* TJBarValueFormatter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TJBarValueFormatter.m; sourceTree = "<group>"; };
+		2BBD3F60214E0905008B9CA1 /* RadarMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarMarkerView.swift; sourceTree = "<group>"; };
+		2BBD3F61214E0905008B9CA1 /* RadarMarkerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadarMarkerView.xib; sourceTree = "<group>"; };
 		4920C2E3CB3BC8DA69F21AC1 /* Pods-TJCharts.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJCharts.release.xcconfig"; path = "Pods/Target Support Files/Pods-TJCharts/Pods-TJCharts.release.xcconfig"; sourceTree = "<group>"; };
 		65548994795799B681B26C68 /* Pods_TJCharts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TJCharts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		781C62847D269333A9E020EE /* Pods-TJCharts.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TJCharts.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TJCharts/Pods-TJCharts.debug.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +73,8 @@
 		2BEADB932146A6E6000DEB91 /* Charts */ = {
 			isa = PBXGroup;
 			children = (
+				2BBD3F60214E0905008B9CA1 /* RadarMarkerView.swift */,
+				2BBD3F61214E0905008B9CA1 /* RadarMarkerView.xib */,
 				A8EACC9E1E49C24D006E787F /* MainViewController.h */,
 				A8EACC9F1E49C24D006E787F /* MainViewController.m */,
 				A8C63F9E1E4AA8A4006FAB36 /* ChartBaseViewController.h */,
@@ -213,6 +219,7 @@
 				A8EACC911E49BE0C006E787F /* LaunchScreen.storyboard in Resources */,
 				A8EACC8E1E49BE0C006E787F /* Assets.xcassets in Resources */,
 				A8EACC8C1E49BE0C006E787F /* Main.storyboard in Resources */,
+				2BBD3F63214E0905008B9CA1 /* RadarMarkerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +277,7 @@
 				A8C63FA31E4AB179006FAB36 /* PieChartViewController.m in Sources */,
 				2BB2664C214B4EE6000EA061 /* HorizontalBarChartController.m in Sources */,
 				A848F2661E4C743A0012309C /* BarChartViewController.m in Sources */,
+				2BBD3F62214E0905008B9CA1 /* RadarMarkerView.swift in Sources */,
 				2BB26654214B9C3B000EA061 /* TJBarValueFormatter.m in Sources */,
 				A8EACC831E49BE0C006E787F /* main.m in Sources */,
 				A8C63FA81E4B057E006FAB36 /* RadarChartViewController.m in Sources */,
@@ -401,7 +409,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TJCharts/TJCharts-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -418,7 +426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tjzl.TJCharts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TJCharts/TJCharts-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

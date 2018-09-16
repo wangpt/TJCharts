@@ -45,83 +45,49 @@
         lineChart.dragDecelerationEnabled = YES;//拖拽饼状图后是否有惯性效果
        
         //3.设置x轴的样式
-        
         ChartXAxis *xAxis = lineChart.xAxis;
-        
         xAxis.drawGridLinesEnabled = NO;//不绘制网格线为NO 绘制为YES
-        
         xAxis.axisLineWidth = 1.0/[UIScreen mainScreen].scale;//设置X轴线宽
-        
         xAxis.labelPosition = XAxisLabelPositionBottom;//X轴的显示位置，默认是显示在上面的
-        
         xAxis.labelTextColor = [UIColor blueColor];//label文字颜色
-        
         xAxis.granularity = 1.0; // 最小的间隔避免文字重叠
-
         xAxis.axisLineColor = [UIColor blueColor];//x轴线的颜色
-        
         xAxis.valueFormatter = self;//用于设置x轴文字显示
-        
         xAxis.spaceMin = 0.5;//设置坐标轴额外的最小空间
-        
         xAxis.spaceMax = 0.5;//设置坐标轴额外的最大空间
         
         //4.设置y轴的样式
-        
         ChartYAxis *leftAxis = lineChart.leftAxis;//获取左边Y轴
-        
         leftAxis.drawGridLinesEnabled = NO;//不绘制网格线
-        
         leftAxis.axisLineWidth = 1.0/[UIScreen mainScreen].scale;//Y轴线宽
-        
         leftAxis.labelCount = 5;//Y轴label数量，数值不一定，如果forceLabelsEnabled等于YES, 则强制绘制制定数量的label, 但是可能不平均
-        
         leftAxis.forceLabelsEnabled = NO;//不强制绘制指定数量的label
-        
         //    leftAxis.axisMaximum = 150.0;//设置Y轴的最大值
-        
         leftAxis.axisMinimum = 0.0;//设置Y轴的最小值
-        
         leftAxis.drawZeroLineEnabled = NO;//从0开始绘画
-        
         leftAxis.spaceTop = 0.05;//最大值到顶部的范围比
-        
         leftAxis.drawLimitLinesBehindDataEnabled = YES;//设置限制线绘制在柱形图的后面
-        
         leftAxis.labelPosition = YAxisLabelPositionOutsideChart;//label位置
-        
         leftAxis.labelTextColor =  [UIColor blueColor];//label文字颜色
-        
         leftAxis.axisLineColor = [UIColor blueColor];//轴线的颜色
-        
         leftAxis.labelFont = [UIFont systemFontOfSize:10.0f];//文字字体
        
         //5.图例样式
         
         ChartLegend *l = lineChart.legend;//
-       
         l.enabled = YES;//显示图例说明
-        
         l.horizontalAlignment = ChartLegendHorizontalAlignmentCenter;//水平方向
-        
         l.verticalAlignment = ChartLegendVerticalAlignmentTop;//垂直方向
-        
         l.orientation = ChartLegendOrientationHorizontal;//方向
-        
         l.drawInside = NO;
         l.xEntrySpace = 7.0;
         l.yEntrySpace = 0.0;
         l.yOffset = 0.0;
         l.formToTextSpace = 5;//文本间隔
-        
         l.font = [UIFont systemFontOfSize:10];//字体大小
-        
         l.form = ChartLegendFormCircle;//图示样式: 方形、线条、圆形
-        
         l.formSize = 12;//图示大小
-        
         l.textColor = [UIColor grayColor];//字体颜色
-        
         lineChart;
     });
 
@@ -138,8 +104,7 @@
     NSInteger lineCount = 2;//条数
     
     //添加随机数据
-    
-    NSMutableArray *all_vals = @[].mutableCopy;
+    NSMutableArray *allLine_vals = @[].mutableCopy;
     for (int count = 0; count<lineCount; count++) {
         NSMutableArray *yVals = [[NSMutableArray alloc] init];
         for (int i = 0; i < _months.count; i++)
@@ -147,13 +112,13 @@
             double val = arc4random_uniform(range) + 10;
             [yVals addObject:[[ChartDataEntry alloc] initWithX:i y:val]];
         }
-        [all_vals addObject:yVals];
+        [allLine_vals addObject:yVals];
     }
     
     if (_chartView.data.dataSetCount > 0)
     {//更新数据
         
-        [all_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [allLine_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             LineChartDataSet *set = (LineChartDataSet *)_chartView.data.dataSets[idx];
             set.values = obj;
         }];
@@ -162,9 +127,9 @@
     
     }else{
         NSMutableArray *dataSets = [[NSMutableArray alloc] init];
-        [all_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [allLine_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             NSString *label = [NSString stringWithFormat:@"第%lu条",(unsigned long)idx+1];
-            LineChartDataSet *set = [[LineChartDataSet alloc] initWithValues:all_vals[idx] label:label];
+            LineChartDataSet *set = [[LineChartDataSet alloc] initWithValues:allLine_vals[idx] label:label];
             [set setColor:TJRandomColor];
             set.lineWidth = 1.0;//线条宽度
             
@@ -172,7 +137,7 @@
             [set setCircleColor:UIColor.redColor];//拐点颜色
             set.circleRadius = 3.0;//拐点半径
             set.drawCirclesEnabled = NO;//是否绘制拐点
-            set.drawCubicEnabled = YES;
+            set.mode = LineChartModeCubicBezier;
             //填充色
 //            NSArray *gradientColors = @[(id)[ChartColorTemplates colorFromString:@"#FFFFFFFF"].CGColor,
 //                                        (id)[ChartColorTemplates colorFromString:@"#FF007FFF"].CGColor];

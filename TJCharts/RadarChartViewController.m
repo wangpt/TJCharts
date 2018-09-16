@@ -8,6 +8,7 @@
 
 #import "RadarChartViewController.h"
 #import "TJCharts-Bridging-Header.h"
+#import "TJCharts-Swift.h"
 
 @interface RadarChartViewController ()<IChartAxisValueFormatter>
 {
@@ -26,127 +27,99 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //一、创建雷达图对象
-    self.chartView = [[RadarChartView alloc] init];
-    [self.view addSubview:self.chartView];
-    CGFloat chartW =[self getScreenSize].width - 20;
-    CGFloat chartH =[self getScreenSize].height - 200;
-    [self.chartView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(chartW, chartH));
-        make.center.mas_equalTo(self.view);
-    }];
-//    self.chartView.delegate = self;
-    self.chartView.descriptionText = @"";//描述
-    self.chartView.rotationEnabled = YES;//是否允许转动
-    self.chartView.highlightPerTapEnabled = NO;//是否能被选中
-    
-    
+    CGFloat chartW =[UIScreen mainScreen].bounds.size.width - 20;
+    CGFloat chartH =[UIScreen mainScreen].bounds.size.height - 200;
     activities = @[ @"交通", @"环境", @"客流量", @"服务", @"其他" ];
-    
-//    _chartView.delegate = self;
-    //1. 设置雷达图线条样式
-    _chartView.chartDescription.enabled = NO;
-    _chartView.webLineWidth = 1.0;//主干线线宽
-    _chartView.innerWebLineWidth = 1.0;//边线宽度
-    _chartView.webColor = [self colorWithHexString:@"#c2ccd0"];////主干线颜色
-    _chartView.innerWebColor =  [self colorWithHexString:@"#c2ccd0"];//边线颜色
-    _chartView.webAlpha = 1.0;//透明度
-    
-    
-    //X轴label样式
-    ChartXAxis *xAxis = _chartView.xAxis;
-    xAxis.labelFont = [UIFont systemFontOfSize:15];//字体
-    
-    xAxis.xOffset = 0.0;
-    xAxis.yOffset = 0.0;
-    xAxis.valueFormatter = self;
-    xAxis.labelTextColor = [self colorWithHexString:@"#057748"];//颜色
-    
-    //Y轴label样式
-    ChartYAxis *yAxis = _chartView.yAxis;
-    yAxis.labelFont = [UIFont systemFontOfSize:9];//字体
-    yAxis.labelTextColor = [UIColor lightGrayColor];// label 颜色
-    yAxis.labelCount = 5;// label 个数
-    yAxis.axisMinimum = 0.0;//最小值
-    yAxis.axisMaximum = 80.0;//最大值
-    yAxis.drawLabelsEnabled = NO;//是否显示 label
+    _chartView = ({
+        RadarChartView *radarChartView = [[RadarChartView alloc] init];
+        [self.view addSubview:radarChartView];
+        [radarChartView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.size.mas_equalTo(CGSizeMake(chartW, chartH));
+            make.center.mas_equalTo(self.view);
+        }];
+        //基础样式
+        radarChartView.rotationEnabled = YES;//是否允许转动
+        radarChartView.highlightPerTapEnabled = NO;//是否能被选中
+        radarChartView.chartDescription.enabled = NO;
+        //交互样式
+        radarChartView.webLineWidth = 1.0;//主干线线宽
+        radarChartView.innerWebLineWidth = 1.0;//边线宽度
+        radarChartView.webColor = [self colorWithHexString:@"#c2ccd0"];////主干线颜色
+        radarChartView.innerWebColor =  [self colorWithHexString:@"#c2ccd0"];//边线颜色
+        radarChartView.webAlpha = 1.0;//透明度
+        //X轴label样式
+        ChartXAxis *xAxis = radarChartView.xAxis;
+        xAxis.labelFont = [UIFont systemFontOfSize:15];//字体
+        xAxis.xOffset = 0.0;
+        xAxis.yOffset = 0.0;
+        xAxis.valueFormatter = self;
+        xAxis.labelTextColor = [self colorWithHexString:@"#057748"];//颜色
+        
+        //Y轴label样式
+        ChartYAxis *yAxis = radarChartView.yAxis;
+        yAxis.labelFont = [UIFont systemFontOfSize:9];//字体
+        yAxis.labelTextColor = [UIColor lightGrayColor];// label 颜色
+        yAxis.labelCount = 5;// label 个数
+        yAxis.axisMinimum = 0.0;//最小值
+        yAxis.axisMaximum = 100.0;//最大值
+        yAxis.drawLabelsEnabled = NO;//是否显示 label
+        
+        //设置标注
+        radarChartView.legend.enabled = NO;
+        //弹出 highlightPerTapEnabled = YES
+        RadarMarkerView *marker = (RadarMarkerView *)[RadarMarkerView viewFromXibIn:[NSBundle mainBundle]];
+        marker.chartView = radarChartView;
+        radarChartView.marker = marker;
+        radarChartView;
+    });
 
-    
-    _chartView.legend.enabled = NO;
-
-    
     [self updateChartData];
-
-
-    [_chartView animateWithXAxisDuration:1.4 yAxisDuration:1.4 easingOption:ChartEasingOptionEaseOutBack];
 }
+
 - (void)updateChartData
 {
-
-    _chartView.data = nil;
-
-    [self setChartData];
-}
-- (void)setChartData
-{
+    _chartView.yAxis.axisMinimum = 0.0;//最小值
+    _chartView.yAxis.axisMaximum = 100.0;//最大值
+    int lineCount = 1;//几条
     double mult = 80;
     double min = 20;
     int cnt = 5;//维度的个数
-    
-    NSMutableArray *entries1 = [[NSMutableArray alloc] init];
-    NSMutableArray *entries2 = [[NSMutableArray alloc] init];
-    
-    // NOTE: The order of the entries when being added to the entries array determines their position around the center of the chart.
-    for (int i = 0; i < cnt; i++)
-    {
-        double randomVal =(arc4random_uniform(mult) + min); //产生 20~100随机数
-        double randomVa2 =(arc4random_uniform(mult) + min); //产生 20~100随机数
-
-        [entries1 addObject:[[RadarChartDataEntry alloc] initWithValue:randomVal]];
-        [entries2 addObject:[[RadarChartDataEntry alloc] initWithValue:randomVa2]];
+    NSMutableArray *allLine_vals = @[].mutableCopy;
+    for (int count = 0; count<lineCount; count++) {
+        NSMutableArray *entries = [[NSMutableArray alloc] init];
+        for (int i = 0; i < cnt; i++)
+        {
+            double randomVal =(arc4random_uniform(mult) + min); //产生 20~100随机数
+            [entries addObject:[[RadarChartDataEntry alloc] initWithValue:randomVal]];
+        }
+        [allLine_vals addObject:entries];
     }
-
-    RadarChartDataSet *set1 = [[RadarChartDataSet alloc] initWithValues:entries1 label:@"贵阳"];
-    [set1 setColor:[self colorWithHexString:@"#ff8936"]];//数据折线颜色
-    set1.fillColor = [self colorWithHexString:@"#ff8936"];//填充颜色
-
-    set1.drawFilledEnabled = YES;
-    set1.fillAlpha = 0.25;//填充透明度
-    set1.lineWidth = 0.5;//数据折线线宽
-    set1.drawHighlightCircleEnabled = YES;
-    [set1 setDrawHighlightIndicators:NO];
-    set1.drawValuesEnabled = NO;//是否绘制显示数据
-    set1.valueFont = [UIFont systemFontOfSize:9];//字体
-    set1.valueTextColor = [UIColor grayColor];//颜色
-
-    RadarChartDataSet *set2 = [[RadarChartDataSet alloc] initWithValues:entries2 label:@"北京"];
-    [set2 setColor:[self colorWithHexString:@"#ff2d51"]];
-    set2.fillColor = [self colorWithHexString:@"#ff2d51"];
-    set2.drawFilledEnabled = YES;
-    set2.fillAlpha = 0.25;
-    set2.lineWidth = 0.5;//数据折线线宽
-    set2.drawValuesEnabled = YES;//是否绘制显示数据
-
-    set2.drawHighlightCircleEnabled = YES;
-    [set2 setDrawHighlightIndicators:NO];
     
-    RadarChartData *data = [[RadarChartData alloc] initWithDataSets:@[set1]];
+    NSMutableArray *dataSets = [[NSMutableArray alloc] init];
+    [allLine_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        RadarChartDataSet *set = [[RadarChartDataSet alloc] initWithValues:obj label:[NSString stringWithFormat:@"第%lu条",idx+1]];
+        UIColor *color = TJRandomColor;
+        [set setColor:color];//数据折线颜色
+        set.fillColor = color;//填充颜色
+        set.drawFilledEnabled = YES;
+        set.fillAlpha = 0.25;//填充透明度
+        set.lineWidth = 0.5;//数据折线线宽
+        set.drawHighlightCircleEnabled = YES;
+        [set setDrawHighlightIndicators:NO];
+        set.valueFont = [UIFont systemFontOfSize:9];//字体
+        set.valueTextColor = [UIColor grayColor];//颜色
+        [dataSets addObject:set];
+    }];
+    
+    RadarChartData *data = [[RadarChartData alloc] initWithDataSets:dataSets];
     [data setValueFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:8.f]];
-    [data setDrawValues:NO];//是否绘制显示数据
+    [data setDrawValues:YES];//是否绘制显示数据
     data.valueTextColor = UIColor.blackColor;
-
-
-    if (_isSimple) {
-        _chartView.yAxis.axisMinimum = 0.0;//最小值
-        _chartView.yAxis.axisMaximum = 100.0;//最大值
-    }else{
-        _isSimple = YES;
-    }
-    
     _chartView.data = data;
-
-
-
+    [_chartView animateWithXAxisDuration:1.4 yAxisDuration:1.4 easingOption:ChartEasingOptionEaseOutBack];
+    
 }
+
 - (IBAction)reloadDataClick:(id)sender {
 
     [self updateChartData];
@@ -164,14 +137,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -1,12 +1,12 @@
 PODS:
-  - Charts (3.0.1):
-    - Charts/Core (= 3.0.1)
-  - Charts/Core (3.0.1)
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
   - Masonry (1.0.2)
 
 DEPENDENCIES:
-  - Charts
-  - Masonry
+  - Charts (= 3.1.1)
+  - Masonry (= 1.0.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -14,9 +14,9 @@ SPEC REPOS:
     - Masonry
 
 SPEC CHECKSUMS:
-  Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
 
-PODFILE CHECKSUM: 6eb6211f90ebd7e0f867aed980e76d1e4ea66184
+PODFILE CHECKSUM: 6c709332047b36fb325e090135533501c92a116e
 
 COCOAPODS: 1.5.3
