@@ -107,7 +107,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="横行柱状图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xB9-Xq-Y4y">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="横向柱状图" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xB9-Xq-Y4y">
                                                     <rect key="frame" x="15" y="0.0" width="325" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -134,7 +134,7 @@
             </objects>
             <point key="canvasLocation" x="-220" y="-430"/>
         </scene>
-        <!--横行柱状图-->
+        <!--横向柱状图-->
         <scene sceneID="W03-0x-FOO">
             <objects>
                 <viewController id="eAQ-3K-5IB" customClass="HorizontalBarChartController" sceneMemberID="viewController">
@@ -147,7 +147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" title="横行柱状图" id="tWc-9V-96v">
+                    <navigationItem key="navigationItem" title="横向柱状图" id="tWc-9V-96v">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="N8a-0V-hWh">
                             <connections>
                                 <action selector="reloadDataClick:" destination="eAQ-3K-5IB" id="1Od-kp-Z42"/>

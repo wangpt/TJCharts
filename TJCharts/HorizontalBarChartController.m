@@ -40,6 +40,7 @@
         barChartView.chartDescription.enabled = NO;//是否显示图标描述
         barChartView.drawGridBackgroundEnabled = NO;//是否绘制网格背景的标志
         barChartView.leftAxis.enabled = NO;//不绘制左边Y轴样式
+        barChartView.leftAxis.axisMinimum = 0;//左侧控制大小
         barChartView.fitBars = YES;
         barChartView.extraBottomOffset = 20;//视图向上偏移20像素
 
@@ -179,6 +180,7 @@
             BarChartDataSet *set = [[BarChartDataSet alloc] initWithValues:all_vals[idx] label:label];
             [set setColor:TJRandomColor];
             set.drawValuesEnabled = YES;//是否在柱形图上面显示数值，需要设置左侧Y轴axisMinimum，以及maxVisibleCount
+//            set.drawIconsEnabled = YES;//可能是charts bug为yes时显示数值
             [dataSets addObject:set];
         }];
         

@@ -95,7 +95,7 @@
     
     NSMutableArray *dataSets = [[NSMutableArray alloc] init];
     [allLine_vals enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        RadarChartDataSet *set = [[RadarChartDataSet alloc] initWithValues:obj label:[NSString stringWithFormat:@"第%lu条",(unsigned long)idx+1]];
+        RadarChartDataSet *set = [[RadarChartDataSet alloc] initWithValues:obj label:[NSString stringWithFormat:@"第%d条",(int)(idx+1)]];
         UIColor *color = TJRandomColor;
         [set setColor:color];//数据折线颜色
         set.fillColor = color;//填充颜色
